@@ -1,0 +1,65 @@
+﻿
+    .webgrid-table  
+    {  
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;  
+        font-size: 1.2em;  
+        width: 80%;  
+        display: table;  
+        border-collapse: separate;  
+        border: solid 2px #ff6a00;  
+        background-color: white;  
+    }
+    .webgrid-table td, th  
+    {  
+        border: 1px solid #ff6a00;  
+        padding: 3px 4px 5px 6px; 
+        text-align: left;
+ 
+    }
+    .webgrid-header 
+    {  
+        background-color: #097abb;  
+        color: white;  
+        padding-bottom: 4px;  
+        padding-top: 5px;  
+        text-align: left;  
+    }
+     .webgrid-footer {}
+     .webgrid-row-style  
+    {  
+        padding:3px 4px 5px 6px; 
+    }
+     .webgrid-alternating-row
+      {  
+        background-color: ActiveCaption;  
+        padding:3px 4px 5px 6px; 
+        
+      }
+        .gridshow {
+            margin-top:5%;
+            margin-left:10%;
+            
+        }  
+        .body{
+            width:80%;
+            margin-top:5%;
+            margin-left:5%;
+
+        }
+        .tblborder{
+           
+        border-collapse: separate;  
+        border: solid 2px #ff6a00;  
+        background-color: white;  
+        padding: 3px 4px 5px 6px; 
+        }
+
+         .tblborder td  
+    {  
+        border: 1px solid #ff6a00;  
+        padding: 3px 4px 5px 6px; 
+        text-align: left;
+ 
+    }
+
+

@@ -1,0 +1,29 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+<div>
+    <h1 style="color:cadetblue;">Employee Management</h1>
+</div>
+        </div>
+       <div class="col-lg-4">
+<div>
+    
+@if( Session["User"] !=null)
+{
+    <h1> Welcome <strong>@Session["User"].ToString()</strong>!</h1>
+        <p> @Html.ActionLink("Log Off", "LogOff", "Employee")</p>
+    
+}
+else {
+      <p>  @Html.ActionLink("Log In", "Login", "Employee")</p>
+
+    }
+   
+</div>
+
+        </div>
+    </div>
+    <hr />
+
+
+</div>

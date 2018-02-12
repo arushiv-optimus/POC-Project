@@ -1,0 +1,59 @@
+﻿@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#login').click(function () {
+                debugger;
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '/Employee/LogIn',
+                    data: {
+                        UserName: $("#username").val(),
+                        Password: $("#pass").val(),
+                    },
+                    success: function (Data) {
+                        debugger;
+                       // alert(Data);
+                       location.href = '@Url.Content("~/Employee/SelectEmployee/")';
+                    },
+                    error: function (data) {
+                        debugger;
+                        alert("Please enter valid UserName and Passwsord");
+
+                }
+            });
+        });
+
+            });
+    </script>
+
+    <center>
+  <fieldset style="width:30%; margin-top:10%; ">
+    <legend>User Login</legend>
+      <br />
+           <div>             
+             <i class="fa fa-user" style="width:7%"></i>
+            <input type="text" placeholder="Enter User Name" id="username" style="width:90%">
+            </div>
+      <br />
+             <div>
+                 <i class="fa fa-lock"style="width:7%;"></i>
+              <input type="password" placeholder="Enter Password" id="pass" style="width:90%">       
+             </div>
+      <br />
+             <div >
+            <button type="submit" class="btn btn-info btn-block" id="login">Login</button>
+            </div>
+      <br />
+
+               
+  </fieldset>
+        </center>
+
+

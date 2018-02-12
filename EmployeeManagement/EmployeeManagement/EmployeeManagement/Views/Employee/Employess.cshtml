@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @model IEnumerable<EmployeeManagement.Models.EmpInfo>
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employe Management</title>
+</head>
+<body>
+   <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //Call EmpDetails jsonResult Method
+        $.getJSON("Employee/SelectEmployee",
+        function (json) {
+        var tr;
+        //Append each row to html table
+        for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + json[i].Emp_ID + "</td>");
+                tr.append("<td>" + json[i].Emp_Name + "</td>");
+                tr.append("<td>" + json[i].Emp_Phone + "</td>");
+                tr.append("<td>" + json[i].Emp_Address + "</td>");
+                $('table').append(tr);
+            }
+        });
+    });
+</script>
+<table class="table table-bordered table-condensed table-hover table-striped">
+        <thead>
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Address</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+</table>
+</body>
+</html>

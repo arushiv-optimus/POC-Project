@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement", "EmployeeManagement\EmployeeManagement.csproj", "{FD1E750E-92C0-478E-B4CB-2A6F1DD793DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement.Tests", "EmployeeManagement.Tests\EmployeeManagement.Tests.csproj", "{63F973FD-19EC-4BA8-BD8F-39774E97481E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD1E750E-92C0-478E-B4CB-2A6F1DD793DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD1E750E-92C0-478E-B4CB-2A6F1DD793DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD1E750E-92C0-478E-B4CB-2A6F1DD793DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD1E750E-92C0-478E-B4CB-2A6F1DD793DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63F973FD-19EC-4BA8-BD8F-39774E97481E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F973FD-19EC-4BA8-BD8F-39774E97481E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F973FD-19EC-4BA8-BD8F-39774E97481E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F973FD-19EC-4BA8-BD8F-39774E97481E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

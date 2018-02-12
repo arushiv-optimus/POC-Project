@@ -1,0 +1,175 @@
+﻿@model IEnumerable<EmployeeManagement.Models.EmpInfo>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SelectEmployee</title>
+    <link href="~/Script/EmployeeStyle.css" rel="stylesheet" />
+    <link href="~/Script/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Script/jquery-3.1.1.js"></script>
+    <script src="~/Script/jquery-3.1.1.min.js"></script>
+    <script src="jquery.min.1.11.1.js" type="text/javascript"></script>  
+   <script src="~/Script/jquery.table2excel.js"  type="text/javascript"></script>
+    
+</head>
+<body>
+    <div class="gridshow">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2">
+            <h3>Select :</h3>
+            </div>
+            <div class="col-lg-4 col-md-4">
+            <select id="ddl1">
+                <option value="0">Select All</option>
+                @foreach (var data in Model)
+                {
+                    <option value="@data.EMP_ID">@data.Emp_Code</option> 
+                }
+            </select>
+            </div>
+            <div class="col-lg-2 col-md-2 text-center">
+                <input id="btnSaerch" type="button" value="Go" class="btn btn-success btn-block" />
+            </div>
+            <div class="col-lg-2 col-md-2 text-center">
+                @*<input id="export" type="button" value="Export" class="btn btn-info btn-block" />*@
+                <a href="~/XML/Employee.xml" class="btn btn-info btn-block" target="_top">Export</a>
+            </div>
+        </div>
+        </div>
+        <br />
+
+
+        <div>
+            <div id="ajaxgrid">
+                @{
+                   
+                    var grid = new WebGrid((IEnumerable<dynamic>) Model, rowsPerPage: 10, selectionFieldName: "SelectedRow", ajaxUpdateContainerId: "ajaxgrid");
+                }
+            </div>
+            @{
+                 @grid.GetHtml(
+               htmlAttributes: new { id = "webGrid1" },
+               tableStyle: "webgrid-table",
+               headerStyle: "webgrid-header",
+               footerStyle: "webgrid-footer",
+               alternatingRowStyle: "webgrid-alternating-row",
+               rowStyle: "webgrid-row-style",
+               columns: grid.Columns(
+               grid.Column("Emp_Code", "Emp Code", canSort: false, format:
+               @<text>@Html.ActionLink((string)item.Emp_Code, "EditEmployee", new { EMP_ID = item.EMP_ID })</text>
+               ),
+               grid.Column("Emp_Name", "Name", canSort: false),
+               grid.Column("Emp_Department", "Department", canSort: false),
+               grid.Column("Emp_Designation", "Designation", canSort: false),
+               grid.Column("Emp_salary", "Salary", canSort: false),
+               grid.Column("Emp_Address", "Address", canSort: false),
+               grid.Column("Emp_Phone", "Phone-no", canSort: false),
+               grid.Column("Emp_Email", "Email-ID", canSort: false),
+               grid.Column("Emp_Gender", "Gender", canSort: false),
+               grid.Column("Action", "Action", canSort: false, format:
+               @<text>@Html.ActionLink("Delete", "DeleteEmployee", new { EMP_ID = item.EMP_ID }, new { onclick = "return confirm('Are you sure you wish to delete this record?');" })</text>
+               )
+            )
+
+               );
+                
+             }
+           
+          
+          @* @{
+               var webGrid = new WebGrid(Model);
+               @webGrid.GetHtml(
+               htmlAttributes: new { id = "webGrid1" },
+               tableStyle: "webgrid-table",
+               headerStyle: "webgrid-header",
+               footerStyle: "webgrid-footer",
+               alternatingRowStyle: "webgrid-alternating-row",
+               rowStyle: "webgrid-row-style",
+               columns: webGrid.Columns(
+               webGrid.Column("Emp_Code", "Emp Code", canSort: false, format:
+               @<text>@Html.ActionLink((string)item.Emp_Code, "EditEmployee", new { EMP_ID = item.EMP_ID })</text>
+               ),
+               webGrid.Column("Emp_Name", "Name", canSort: false),
+               webGrid.Column("Emp_Department", "Department", canSort: false),
+               webGrid.Column("Emp_Designation", "Designation", canSort: false),
+               webGrid.Column("Emp_salary", "Salary", canSort: false),
+               webGrid.Column("Emp_Address", "Address", canSort: false),
+               webGrid.Column("Emp_Phone", "Phone-no", canSort: false),
+               webGrid.Column("Emp_Email", "Email-ID", canSort: false),
+               webGrid.Column("Emp_Gender", "Gender", canSort: false),
+               webGrid.Column("Action", "Action", canSort: false, format:
+               @<text>@Html.ActionLink("Delete", "DeleteEmployee", new { EMP_ID = item.EMP_ID }, new { onclick = "return confirm('Are you sure you wish to delete this record?');" })</text>
+               )
+            )
+
+               );
+           } *@
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-lg-2 col-md-2"></div>
+            <div class="col-lg-4 col-md-4"></div>
+            <div class="col-lg-4 col-md-4 text-center">
+                <input id="create" type="button" class="btn btn-primary" value="Create New Employee" style="width:330px;" />
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+ 
+        $('#create').click(function () {
+           
+            location.href = '@Url.Content("~/Employee/ManipulateEmployee/")';
+           
+        });
+        $('#export').click(function () {
+
+            location.href = '@Url.Content("~/Employee/ExportToXml/")';
+
+        });
+
+        $('#btnSaerch').click(function () {
+            debugger;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '/Employee/SelectEmployee',
+                data: {
+
+                    EMP_ID: $('#ddl1 :selected').val()
+                },
+                
+                success: function (Data)
+                {
+                  //  alert(Data.length);
+                    debugger;
+                  //  location.reload();
+                   
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
+           // alert(Data[0].length),
+        });
+
+    });
+</script>
+
+
+</body>
+</html>
